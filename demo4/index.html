@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang='en-CA'>
+
+<meta charset='UTF-8'>
+<meta http-equiv='Content-Security-Policy' content="base-uri 'self'; child-src 'self'; connect-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; img-src 'self'; media-src 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link rel='stylesheet' type='text/css' href='node_modules/bootstrap/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' type='text/css' href='node_modules/prismjs/themes/prism-okaidia.css'>
+<link rel='stylesheet' type='text/css' href='node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css'>
+<title>Demo4</title>
+
+<div class='container-fluid'>
+    <h1>Demo 4 - Object iteration</h1>
+    
+    <div class='row'>
+        <div class='col-sm-4'>
+            <h2>Code</h2>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#input" aria-controls="input" role="tab" data-toggle="tab">Input</a></li>
+                <li role="presentation"><a href="#output" aria-controls="output" role="tab" data-toggle="tab">Output</a></li>
+                <li role="presentation"><a href="#graph" aria-controls="graph" role="tab" data-toggle="tab">Why?</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="input">
+                    <pre><code class='language-js'>
+                        var data = {
+                          "southwest": [
+                            {"name": "Baseline", "spots": 276},
+                            {"name": "Fallowfield", "spots": 1665},
+                            {"name": "Nepean Woods", "spots": 343},
+                            {"name": "Strandherd", "spots": 336}
+                          ],
+                          "west": [
+                            {"name": "Canadian Tire Centre", "spots": 100},
+                            {"name": "Eagleson", "spots": 1216},
+                            {"name": "Terry Fox", "spots": 515}
+                          ],
+                          "east": [
+                            {"name": "Jeanne d'Arc", "spots": 60},
+                            {"name": "Millennium", "spots": 151},
+                            {"name": "Place d'Orléans", "spots": 571},
+                            {"name": "Ray Friel", "spots": 30},
+                            {"name": "Telesat (Blair)", "spots": 20},
+                            {"name": "Trim", "spots": 1094}
+                          ],
+                          "southeast": [
+                            {"name": "Greenboro", "spots": 678},
+                            {"name": "Leitrim", "spots": 292},
+                            {"name": "Riverview", "spots": 400}
+                          ]
+                        };
+                    </code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="output">
+                    <pre><code class="language-js">
+                        // We want two variables
+                                                
+                        console.log(allStationNames)
+                        /*
+                        [ 'Baseline', 'Fallowfield', 'Nepean Woods', 'Strandherd',
+                          'Canadian Tire Centre', 'Eagleson', 'Terry Fox', 'Jeanne d\'Arc',
+                          'Millennium', 'Place d\'Orléans', 'Ray Friel', 'Telesat (Blair)', 'Trim',
+                          'Greenboro', 'Leitrim', 'Riverview' ]
+                        */
+                        
+                        console.log(graphData)
+                        // [ 276, 1665, 343, 336, 100, 1216, 515, 60, 151, 571, 30, 20, 1094, 678, 292, 400 ]
+                    </code></pre>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="graph">
+                    <p>To generate this awesome graph!</p>
+                    
+                    <div id="graph-output"></div>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-8'>
+            <h2>Ways to do it</h2>
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#t1" aria-controls="t1" role="tab" data-toggle="tab"><code>for..in</code></a></li>
+                <li role="presentation"><a href="#t2" aria-controls="t2" role="tab" data-toggle="tab">Iterate output of <code>Object.keys()</code></a></li>
+                <li role="presentation"><a href="#t3" aria-controls="t3" role="tab" data-toggle="tab"><code>for..of</code></a></li>
+                <li role="presentation"><a href="#t4" aria-controls="t4" role="tab" data-toggle="tab"><code>Object.values()</code></a></li>
+            </ul>
+
+            <div class="tab-content">
+                <section role="tabpanel" class="tab-pane active" id="t1">
+                    <h3><code>for..in</code></h3>
+                    
+                    <p>From the beginning of JavaScript (<abbr title='ECMAScript 1'>ES1</abbr>), the <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in'><code>for..in</code></a> loop can be used to iterate through an object's enumerable properties.</p>
+                    
+                    <pre><code class='language-js line-numbers'>
+                        for (var property in obj) {
+                            // ...
+                        }
+                    </code></pre>
+                    
+                    <p>Because objects may inherit enumerable properties from parent prototypes, a <code>for..in</code> loop is normally wrapped with an own property check:</p>
+                    
+                    <pre><code class='language-js line-numbers'>
+                        for (var property in obj) {
+                            if (obj.hasOwnProperty(property)) {
+                                // ...
+                            }
+                        }
+                    </code></pre>
+                    <h4>When to do it this way</h4>
+                    <ul>
+                        <li>When required to support <del>dinosaurs</del> <ins>very old user-agents (browsers)</ins></li>
+                    </ul>
+                    
+                    <h4>Disadvantages</h4>
+                    <ul>
+                        <li>It will loop through inherited properties unless the hasOwnProperty guard is in place</li>
+                        <li>It's a bit cumbersome when you only need the value</li>
+                        <li>At first glance it isn't obvious what the code is doing, unless you're familiar with the construct</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <pre><code class='language-js line-numbers'>
+                        var allStationNames = [];
+                        var graphData = [];
+                        
+                        for (var zone in data) {
+                            // zone is the key, data[zone] is the value, in this case an array
+                            
+                            if (data.hasOwnProperty(zone)) {
+                                data[zone].forEach(function (station) {
+                                    allStationNames.push(station.name);
+                                    graphData.push(station.spots);
+                                });
+                            }
+                        }
+                    </code></pre>
+                </section>
+                <section role="tabpanel" class="tab-pane" id="t2">
+                    <h3>Iterate the output of <code>Object.keys()</code></h3>
+                    
+                    <p><abbr title='ECMASCript 5'>ES5</abbr> introduced <a href='https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/keys'><code>Object.keys()</code></a> as a way to retrieve the keys of an object as an array. Instead of using <code>for..in</code>, we can iterate through the keys using <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach'><code>Array.prototype.forEach</code></a>.</p>
+                    
+                    <pre><code class='language-js line-numbers'>
+                        Object.keys(obj).forEach(function (property) {
+                            // ...
+                        });
+                    </code></pre>
+                    
+                    <p>Alternatively, we can use <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map'><code>Array.prototype.map</code></a> to transform each key into something, or even filter them first using <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter'><code>Array.prototype.filter</code></a>.</p>
+                    
+                    <h4>When to do it this way</h4>
+                    <ul>
+                        <li>When required to support "reasonably old" but legacy user-agents (browsers)</li>
+                        <li>When you need both the key and value when iterating</li>
+                        <li>When you need to manipulate the keys as a set prior to iterating (for example, sort them or order them)</li>
+                    </ul>
+                    
+                    <h4>Disadvantages</h4>
+                    <ul>
+                        <li>Still not very obvious what the code is doing, but at least you can see immediately that it's looping through the keys of an object (I hope)</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <pre><code class='language-js line-numbers'>
+                        // This example requires an ES5 compliant browser such as IE 9+
+                        var allStationNames = [];
+                        var graphData = [];
+                        
+                        Object.keys(data).forEach(function (zone) {
+                            // zone is the key, data[zone] is the value, in this case an array
+                            
+                            data[zone].forEach(function (station) {
+                                allStationNames.push(station.name);
+                                graphData.push(station.spots);
+                            });
+                        });
+                    </code></pre>
+                </section>
+                <section role="tabpanel" class="tab-pane" id="t3">
+                    <h3><code>for..of</code></h3>
+                    
+                    <p><abbr title='ECMAScript 6'>ES6</abbr> introduces a new construct known as <a href='https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...of'><code>for..of</code></a>, which iterates through iterable things.</p>
+                    
+                    <pre><code class='language-js line-numbers'>
+                        for (let value of iterableThing) {
+                            // ...
+                        }
+                    </code></pre>
+                    
+                    <h4>What are iterable things?</h4>
+                    <p>Any object that has an <code>@@iterator</code> Symbol property is considered iterable. Examples of built-in iterable things include:</p>
+                    <ul>
+                        <li>String</li>
+                        <li>Array</li>
+                        <li>Map</li>
+                        <li>Set</li>
+                        <li>NodeList (a <abbr title='Document Object Model'>DOM</abbr> collection)</li>
+                        <li>jQuery 3 collections (at time of writing, jQuery 3 is still in release candidate)</li>
+                    </ul>
+                    <p><strong>Simple objects are not iterable</strong>, and therefore the example will not work here. Other examples are shown instead.</p>
+                    
+                    <h4>Can I make my object iterable?</h4>
+                    <p>Yes but it's really complicated and probably not worth the effort unless you are developing something that produces collection objects to be consumed this way (like jQuery 3).</p>
+                    <pre><code class='language-js line-numbers'>
+                        // assuming your object is in "data",
+                        // and not a real example that uses the object contents
+                        data[Symbol.iterator] = function* () {
+                            yield 'Barrhaven';
+                            yield 'Kanata';
+                            yield 'Orléans';
+                        };
+                        
+                        for (let value of data) {
+                            // ...this loop will have three iterations because the generator function yielded three times
+                        }
+                    </code></pre>
+
+                    <p>Do not panic! The asterisk in <code>function*</code> does <em>not</em> mean pointers like in C/C++. It means generator function, or a function that can be paused and resumed (using the <code>yield</code> keyword).</p>
+                    
+                    <p>To understand it, read about <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*'>generator functions</a> and <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator'><code>Generator</code> objects</a>.</p>
+                    
+                    <h4>When to do it this way</h4>
+                    <ul>
+                        <li>When you want to loop through an iterable thing, and</li>
+                        <li>When you only care about the value, and</li>
+                        <li>When you are transpiling your code or only need to support very modern browsers</li>
+                    </ul>
+                    
+                    <h4>Disadvantages</h4>
+                    <ul>
+                        <li>The object needs to be iterable</li>
+                    </ul>
+                    
+                    <h4>Example</h4>
+                    <pre><code class='language-js line-numbers'>
+                        // A string is iterable
+                        let name = 'Tyler the Developer';
+                        let numberOfEs = 0;
+                        for (let char of name) {
+                            if (char === 'e') {
+                                numberOfEs++;
+                            }
+                        }
+                        console.log(numberOfEs); // 5
+                    </code></pre>
+                </section>
+                <section role="tabpanel" class="tab-pane" id="t4">
+                    <h3><code>Object.values()</code></h3>
+                    
+                    <p><abbr title='ECMAScript 7'>ES7</abbr> introduces <a href='https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/values'><code>Object.values()</code></a> which, like <a href='https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/keys'><code>Object.keys()</code></a>, returns an array of the values in an object.</p>
+                    
+                    <pre><code class='language-js line-numbers'>
+                        Object.values(obj).forEach(value => {
+                            // ...
+                        });
+                    </code></pre>
+                    
+                    <p><abbr>ES5</abbr> came out in 2009, with <code>Object.keys()</code>. I wonder why it took the Ecma General Assembly 7 years to come up with <code>Object.values()</code>. At time of writing, <abbr>ES7</abbr> is planned for release in summer 2016.</p>
+
+                    <h4>When to do it this way</h4>
+                    <ul>
+                        <li>When you only care about the values, and</li>
+                        <li>When you are polyfilling your code (for example with babel-polyfill)</li>
+                    </ul>
+                    <p>At time of writing, <a href='https://kangax.github.io/compat-table/esnext/#test-Object.values'>only Firefox 47 and Edge 14 natively support this</a>, both in beta. It's not even supported on Node.js 6 yet.</p>
+                    
+                    <h4>Examples</h4>
+                    <pre><code class='language-js line-numbers'>
+                        let allStationNames = [];
+                        let graphData = [];
+                        
+                        Object.values(data).forEach(stations => {
+                            // stations is the value, in this case an array
+                            
+                            stations.forEach(station => {
+                                allStationNames.push(station.name);
+                                graphData.push(station.spots);
+                            });
+                        });
+                    </code></pre>
+                    
+                    <p>Alternative example: Since our object contains arrays, the output of <code>Object.values()</code> is a two-dimensional array (an array of arrays). We can use <code>Array.prototype.reduce</code> and <code>Array.prototype.map</code> to flatten and transform the array as needed:</p>
+                    
+                    <pre data-start='0'><code class='language-js line-numbers'>
+                        // Get an array of arrays from an object of arrays
+                        data = Object.values(data);
+                        
+                        // Flatten the two-dimensional array into a single array
+                        data = data.reduce((acc, stations) => acc.concat(stations), []);
+                        //                                                          ^------- initial accumulator value
+                        
+                        // Transform as needed
+                        let allStationNames = data.map(station => station.name);
+                        let graphData = data.map(station => station.spots);
+                    </code></pre>
+                    
+                    <p>For illustrative purposes, lines 1 and 4 in the above code are split into two separate lines. If the two-dimensional array is not needed, the lines could be chained together.</p>
+                    
+                    <p>Shorter isn't always better, but sometimes you can do a lot in 3-4 lines of code.</p>
+                </section>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src='node_modules/babel-polyfill/dist/polyfill.min.js'></script>
+<script src='node_modules/jquery/dist/jquery.min.js'></script>
+<script src='node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='node_modules/prismjs/prism.js'></script>
+<script src='node_modules/prismjs/plugins/line-numbers/prism-line-numbers.min.js'></script>
+<script src='node_modules/prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.min.js'></script>
+<script src='node_modules/highcharts/highcharts.js'></script>
+<script src='js/index.js'></script>

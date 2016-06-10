@@ -8,3 +8,4 @@ Each directory has a README file with information relating to that specific demo
 
 - demo2: Higher-order functions for JavaScript array operations
 - demo3: Object-oriented concepts in ES6, encapsulation, Law of Demeter
+- demo4: Object iteration
