@@ -4,7 +4,7 @@
 <meta charset='UTF-8'>
 <meta http-equiv='Content-Security-Policy' content="base-uri 'self'; child-src 'self'; connect-src 'none'; font-src 'self'; form-action 'none'; frame-ancestors 'none'; frame-src 'none'; img-src 'self'; media-src 'none'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'">
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 <link rel='stylesheet' type='text/css' href='node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' type='text/css' href='node_modules/prismjs/themes/prism-okaidia.css'>
 <link rel='stylesheet' type='text/css' href='node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css'>
@@ -14,12 +14,18 @@
     <h1>Demo 4 - Object iteration</h1>
     
     <div class='row'>
-        <div class='col-sm-4'>
+        <div class='col-md-4'>
             <h2>Code</h2>
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#input" aria-controls="input" role="tab" data-toggle="tab">Input</a></li>
-                <li role="presentation"><a href="#output" aria-controls="output" role="tab" data-toggle="tab">Output</a></li>
-                <li role="presentation"><a href="#graph" aria-controls="graph" role="tab" data-toggle="tab">Why?</a></li>
+                <li role="presentation" class="nav-item">
+                    <a href="#input" aria-controls="input" role="tab" data-toggle="tab" class="nav-link active">Input</a>
+                </li>
+                <li role="presentation" class="nav-item">
+                    <a href="#output" aria-controls="output" role="tab" data-toggle="tab" class="nav-link">Output</a>
+                </li>
+                <li role="presentation" class="nav-item">
+                    <a href="#graph" aria-controls="graph" role="tab" data-toggle="tab" class="nav-link">Why?</a>
+                </li>
             </ul>
 
             <div class="tab-content">
@@ -76,14 +82,22 @@
                 </div>
             </div>
         </div>
-        <div class='col-sm-8'>
+        <div class='col-md-8'>
             <h2>Ways to do it</h2>
 
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#t1" aria-controls="t1" role="tab" data-toggle="tab"><code>for..in</code></a></li>
-                <li role="presentation"><a href="#t2" aria-controls="t2" role="tab" data-toggle="tab">Iterate output of <code>Object.keys()</code></a></li>
-                <li role="presentation"><a href="#t3" aria-controls="t3" role="tab" data-toggle="tab"><code>for..of</code></a></li>
-                <li role="presentation"><a href="#t4" aria-controls="t4" role="tab" data-toggle="tab"><code>Object.values()</code></a></li>
+                <li role="presentation" class="nav-item">
+                    <a href="#t1" aria-controls="t1" role="tab" data-toggle="tab" class="nav-link active"><code>for..in</code></a>
+                </li>
+                <li role="presentation" class="nav-item">
+                    <a href="#t2" aria-controls="t2" role="tab" data-toggle="tab" class="nav-link">Iterate output of <code>Object.keys()</code></a>
+                </li>
+                <li role="presentation" class="nav-item">
+                    <a href="#t3" aria-controls="t3" role="tab" data-toggle="tab" class="nav-link"><code>for..of</code></a>
+                </li>
+                <li role="presentation" class="nav-item">
+                    <a href="#t4" aria-controls="t4" role="tab" data-toggle="tab" class="nav-link"><code>Object.values()</code></a>
+                </li>
             </ul>
 
             <div class="tab-content">

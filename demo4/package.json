@@ -5,10 +5,10 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "babel-polyfill": "^6.9.0",
-    "bootstrap": "^3.3.6",
-    "highcharts": "^4.2.5",
-    "jquery": "^2.2.4",
-    "prismjs": "^1.5.0"
+    "babel-polyfill": "^6.26",
+    "bootstrap": "^4.0",
+    "highcharts": "^6.0",
+    "jquery": "^3.3",
+    "prismjs": "^1.10"
   }
 }
