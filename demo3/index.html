@@ -6,7 +6,7 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel='stylesheet' type='text/css' href='node_modules/bootstrap/dist/css/bootstrap.min.css'>
 <link rel='stylesheet' type='text/css' href='node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css'>
-<link rel='stylesheet' type='text/css' href='node_modules/datatables.net-bs/css/dataTables.bootstrap.css'>
+<link rel='stylesheet' type='text/css' href='node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css'>
 <title>Demo3</title>
 
 <div class='container-fluid'>
@@ -14,66 +14,43 @@
     
     <h2>Concepts</h2>
 
-    <div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'>
-        <div class='panel panel-default'>
-            <div class='panel-heading' role='tab' id='headingOne'>
-                <h2 class='panel-title'>
-                    <a role='button' data-toggle='collapse' data-parent='#accordion' href='#collapseOne' aria-expanded='false' aria-controls='collapseOne'>
-                        Law of Demeter (<abbr>LoD</abbr>)
-                    </a>
-                </h2>
-            </div>
-            <div id='collapseOne' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>
-                <div class='panel-body'>
-                    <blockquote cite='https://github.com/emerleite/demeter'>
-                        <p>The Law of Demeter (LoD), or Principle of Least Knowledge, is a simple design style for developing software with the following guidelines:
-                        <ul>
-                            <li>Each unit should have only limited knowledge about other units: only units 'closely' related to the current unit.
-                            <li>Each unit should only talk to its friends; don't talk to strangers.
-                            <li>Only talk to your immediate friends.
-                        </ul>
-                        <footer><a href='https://github.com/emerleite/demeter'>emerleite/demeter</a></footer>
-                    </blockquote>
+    <div>
+        <details>
+            <summary id='headingOne'>Law of Demeter (<abbr>LoD</abbr>)</summary>
+            <div id='collapseOne' aria-labelledby='headingOne'>
+                <blockquote cite='https://github.com/emerleite/demeter'>
+                    <p>The Law of Demeter (LoD), or Principle of Least Knowledge, is a simple design style for developing software with the following guidelines:
+                    <ul>
+                        <li>Each unit should have only limited knowledge about other units: only units 'closely' related to the current unit.
+                        <li>Each unit should only talk to its friends; don't talk to strangers.
+                        <li>Only talk to your immediate friends.
+                    </ul>
+                    <footer><a href='https://github.com/emerleite/demeter'>emerleite/demeter</a></footer>
+                </blockquote>
 
-                    <p>Code example:</p>
-                    <pre>var steps = 2
+                <p>Code example:</p>
+                <pre>var steps = 2
 <del>this.dog.legs._position += steps</del> // don't control the dog's legs
 <ins>this.dog.walk(steps)</ins>             // command the dog to walk instead</pre>
-                </div>
             </div>
-        </div>
-        <div class='panel panel-default'>
-            <div class='panel-heading' role='tab' id='headingTwo'>
-                <h2 class='panel-title'>
-                    <a class='collapsed' role='button' data-toggle='collapse' data-parent='#accordion' href='#collapseTwo' aria-expanded='false' aria-controls='collapseTwo'>
-                        Encapsulation
-                    </a>
-                </h2>
-            </div>
-            <div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>
-                <div class='panel-body'>
-                    <blockquote cite='https://docs.oracle.com/javase/tutorial/java/concepts/object.html'>
-                        <p>Hiding internal state and requiring all interaction to be performed through an object's methods is known as data encapsulation — a fundamental principle of object-oriented programming.</p>
-                        <footer>What Is an Object? (The Java&trade; Tutorials &gt; Learning the Java Language &gt; Object-Oriented Programming Concepts)</footer>
-                    </blockquote>
+        </details>
+        <details>
+            <summary id='headingTwo'>Encapsulation</summary>
+            <div id='collapseTwo' aria-labelledby='headingTwo'>
+                <blockquote cite='https://docs.oracle.com/javase/tutorial/java/concepts/object.html'>
+                    <p>Hiding internal state and requiring all interaction to be performed through an object's methods is known as data encapsulation — a fundamental principle of object-oriented programming.</p>
+                    <footer>What Is an Object? (The Java&trade; Tutorials &gt; Learning the Java Language &gt; Object-Oriented Programming Concepts)</footer>
+                </blockquote>
 
-                    <p>The Law of Demeter should be rarely violated if objects are properly encapsulated.</p>
-                </div>
+                <p>The Law of Demeter should be rarely violated if objects are properly encapsulated.</p>
             </div>
-        </div>
-        <div class='panel panel-default'>
-            <div class='panel-heading' role='tab' id='headingThree'>
-                <h2 class='panel-title'>
-                    <a class='collapsed' role='button' data-toggle='collapse' data-parent='#accordion' href='#collapseThree' aria-expanded='false' aria-controls='collapseThree'>
-                        Classes in ES5
-                    </a>
-                </h2>
-            </div>
-            <div id='collapseThree' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingThree'>
-                <div class='panel-body'>
-                    <p>In JavaScript, a class is a function. A function is an object. A class is an object. All objects are instances of the class <code>Object</code>. <strong>Confusing? That's fine, you don't need to understand that.</strong></p>
-                    
-                    <pre>
+        </details>
+        <details>
+            <summary id='headingThree'>Classes in ES5</summary>
+            <div id='collapseThree' aria-labelledby='headingThree'>
+                <p>In JavaScript, a class is a function. A function is an object. A class is an object. All objects are instances of the class <code>Object</code>. <strong>Confusing? That's fine, you don't need to understand that.</strong></p>
+
+                <pre>
 function ChartistWrapper() {
     console.log('Constructor')
 }
@@ -81,28 +58,20 @@ function ChartistWrapper() {
 ChartistWrapper.prototype.foo = function (x) {
     console.log('Instance method called foo with a parameter x')
 }
-                        
+
 ChartistWrapper.bar = function () {
     console.log('Static method called bar')
 }</pre>
 
-                    <p>There has to be a way to subclass but I don't know how to do it in ES5.</p>
-                </div>
+                <p>There has to be a way to subclass but I don't know how to do it in ES5.</p>
             </div>
-        </div>
-        <div class='panel panel-default'>
-            <div class='panel-heading' role='tab' id='headingFour'>
-                <h2 class='panel-title'>
-                    <a class='collapsed' role='button' data-toggle='collapse' data-parent='#accordion' href='#collapseFour' aria-expanded='false' aria-controls='collapseFour'>
-                        Classes in ES6
-                    </a>
-                </h2>
-            </div>
-            <div id='collapseFour' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingFour'>
-                <div class='panel-body'>
-                    <p>In ES6, the syntax is a lot cleaner:</p>
+        </details>
+        <details>
+            <summary id='headingFour'>Classes in ES6</summary>
+            <div id='collapseFour' aria-labelledby='headingFour'>
+                <p>In ES6, the syntax is a lot cleaner:</p>
                     
-                    <pre>
+                <pre>
 class ChartistWrapper {
     constructor() {
         console.log('Constructor')
@@ -116,49 +85,46 @@ class ChartistWrapper {
         console.log('Static method called bar')
     }
 }</pre>
-                    <p><code>constructor</code> is a reserved keyword in a class for the constructor method</p>
-                    <p><code>static</code> is a reserved keyword in a class for the class methods</p>
-                    <p>Subclassing can be done with the <code>extends</code> keyword</p>
-                    <p>ES7 is supposed to be standardized by summer 2016. There are very few changes, and <strong>no</strong> plans to implement abstract classes nor interfaces.</p>
-                </div>
+                <p><code>constructor</code> is a reserved keyword in a class for the constructor method</p>
+                <p><code>static</code> is a reserved keyword in a class for the class methods</p>
+                <p>Subclassing can be done with the <code>extends</code> keyword</p>
+                <p>ES7 is supposed to be standardized by summer 2016. There are very few changes, and <strong>no</strong> plans to implement abstract classes nor interfaces.</p>
             </div>
-        </div>
+        </details>
     </div>
     
     <hr>
     
     <h2>Demo app: Parking violations</h2>
     
-    <div class='row'>
-        <div class='col-xs-12'>
-            <section class='panel panel-success'>
-                <header class='panel-heading'>
+    <div class='row mb-3'>
+        <div class='col-12'>
+            <section class='card border-success'>
+                <header class='card-header text-white bg-success'>
                     Application features
                 </header>
-                <div class='panel-body'>
+                <div class='card-body'>
                     <ul>
                         <li>Initialize a DataTable
                         <li>Initialize a Bootstrap datepicker
                         <li>Upon form submission: make an AJAX request, insert new row with response data, reset form
                     </ul>
+                    <p class='card-text'>This demo only works in browsers that support the following ES6 features: classes, arrow functions, let statements. (Otherwise you'll need to run Babel or some other transpiler.)</p>
                 </div>
-                <footer class='panel-footer'>
-                    <p>This demo only works in browsers that support the following ES6 features: classes, arrow functions, let statements. (Otherwise you'll need to run Babel or some other transpiler.)</p>
-                </footer>
             </section>
         </div>
     </div>
     
-    <div class='row'>
-        <div class='col-xs-12 col-md-8'>
-            <section class='panel panel-primary'>
-                <header class='panel-heading'>
+    <div class='row mb-3'>
+        <div class='col-12 col-md-8'>
+            <section class='card border-primary'>
+                <header class='card-header text-white bg-primary'>
                     Tickets issued
                 </header>
                 
-                <div class='panel-body'>
+                <div class='card-body'>
                     <table id='ticket-history' class='table table-striped' data-order='[[1, "desc"]]'>
-                        <thead>
+                        <thead class='thead-dark'>
                             <tr>
                                 <th>Offender</th>
                                 <th>Date issued</th>
@@ -179,18 +145,18 @@ class ChartistWrapper {
                         </tbody>
                     </table>
                 </div>
-                <footer class='panel-footer'>
-                    <p>Except for example 0, an instance of <code>TicketsTable</code> is 'mounted' onto the above table.</p>
+                <footer class='card-footer'>
+                    <p class='card-text'>Except for example 0, an instance of <code>TicketsTable</code> is 'mounted' onto the above table.</p>
                 </footer>
             </section>
         </div>
-        <div class='col-xs-12 col-md-4'>
-            <section class='panel panel-info'>
-                <header class='panel-heading'>
+        <div class='col-12 col-md-4'>
+            <section class='card panel-info'>
+                <header class='card-header bg-info'>
                     Add data
                 </header>
                 
-                <div class='panel-body'>
+                <div class='card-body'>
                     <form id='insert-ticket-form' action='/api/tickets' method='post'>
                         <div class='form-group'>
                             <label for='offender'>Offender</label>
@@ -220,8 +186,8 @@ class ChartistWrapper {
                     </form>
                 </div>
                 
-                <footer class='panel-footer'>
-                    <p>Except for example 0, an instance of <code>AddTicketForm</code> is 'mounted' onto the above form.</p>
+                <footer class='card-footer'>
+                    <p class='card-text'>Except for example 0, an instance of <code>AddTicketForm</code> is 'mounted' onto the above form.</p>
                 </footer>
             </section>
         </div>
@@ -230,7 +196,7 @@ class ChartistWrapper {
 
 <script src='node_modules/jquery/dist/jquery.min.js'></script>
 <script src='node_modules/datatables.net/js/jquery.dataTables.js'></script>
-<script src='node_modules/datatables.net-bs/js/dataTables.bootstrap.js'></script>
+<script src='node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js'></script>
 <script src='node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 <script src='node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'></script>
 

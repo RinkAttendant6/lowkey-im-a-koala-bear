@@ -3,11 +3,10 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 
-const argv = require('minimist')(process.argv.slice(2));
 const app = express();
 
 const host = '::1';
-const port = Number(argv.port) || 3000;
+const port = 3000;
 
 // Request parser
 app.use(bodyParser.urlencoded({extended: true}));
