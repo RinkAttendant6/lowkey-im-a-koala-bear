@@ -1,14 +1,15 @@
 {
   "name": "demo4",
   "version": "1.0.0",
+  "type": "module",
   "author": "Vincent Diep",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
     "babel-polyfill": "^6.26",
-    "bootstrap": "^4.0",
-    "highcharts": "^6.0",
-    "jquery": "^3.3",
-    "prismjs": "^1.10"
+    "bootstrap": "^4.6",
+    "highcharts": "^9.1",
+    "jquery": "^3.6",
+    "prismjs": "^1.23"
   }
 }
