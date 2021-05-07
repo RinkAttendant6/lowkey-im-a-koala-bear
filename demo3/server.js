@@ -1,7 +1,4 @@
-'use strict';
-
-const bodyParser = require('body-parser');
-const express = require('express');
+import express from 'express';
 
 const app = express();
 
@@ -9,7 +6,7 @@ const host = '::1';
 const port = 3000;
 
 // Request parser
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 
 // Handle ajax request
 app.post('/api/tickets', (req, res) => {

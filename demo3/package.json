@@ -1,12 +1,12 @@
 {
   "name": "demo3",
   "version": "1.0.0",
+  "type": "module",
   "main": "server.js",
   "author": "Vincent Diep",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "body-parser": "^1.19",
     "bootstrap": "^4.6",
     "bootstrap-datepicker": "^1.9",
     "datatables.net": "^1.10",
