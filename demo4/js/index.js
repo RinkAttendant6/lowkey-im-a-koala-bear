@@ -47,6 +47,7 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', e => {
         title: {text: 'Park-and-Ride spots in urban transit areas'},
         legend: {enabled: false},
         tooltip: {enabled: false},
+        credits: {enabled: false},
         subtitle: {text: 'Source: OC Transpo (octranspo.com)'},
         xAxis: {
             categories: categories
