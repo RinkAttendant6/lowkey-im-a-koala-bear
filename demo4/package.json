@@ -8,8 +8,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26",
     "bootstrap": "^4.6",
-    "highcharts": "^9.1",
+    "highcharts": "^9.2",
     "jquery": "^3.6",
-    "prismjs": "^1.23"
+    "prismjs": "^1.25"
   }
 }
