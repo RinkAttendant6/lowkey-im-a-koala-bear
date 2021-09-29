@@ -9,7 +9,7 @@
   "dependencies": {
     "bootstrap": "^4.6",
     "bootstrap-datepicker": "^1.9",
-    "datatables.net": "^1.10",
+    "datatables.net": "^1.11",
     "datatables.net-bs4": "^1.10",
     "express": "^4.17",
     "jquery": "^3.6"
