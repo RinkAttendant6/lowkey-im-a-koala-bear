@@ -124,7 +124,7 @@ class ChartistWrapper {
                 
                 <div class='card-body'>
                     <table id='ticket-history' class='table table-striped' data-order='[[1, "desc"]]'>
-                        <thead class='thead-dark'>
+                        <thead class='table-dark'>
                             <tr>
                                 <th>Offender</th>
                                 <th>Date issued</th>
@@ -158,11 +158,11 @@ class ChartistWrapper {
                 
                 <div class='card-body'>
                     <form id='insert-ticket-form' action='/api/tickets' method='post'>
-                        <div class='form-group'>
+                        <div class='mb-3'>
                             <label for='offender'>Offender</label>
                             <input type='text' class='form-control' id='offender' name='offender' autocomplete='off' required>
                         </div>
-                        <div class='form-group'>
+                        <div class='mb-3'>
                             <label for='date'>Date</label>
                             <div class='input-group date'>
                                 <input type='text' class='form-control' id='date' name='date' required data-date-format='yyyy-mm-dd'>
@@ -171,7 +171,7 @@ class ChartistWrapper {
                                 </div>
                             </div>
                         </div>
-                        <div class='form-group'>
+                        <div class='mb-3'>
                             <label for='violation'>Violation</label>
                             <select id='violation' class='form-control' name='violation' required>
                                 <option value=''>Select one</option>
